@@ -3,12 +3,14 @@ const menuButton = document.querySelector('#nav-toggle')
 
 menuButton?.addEventListener('click', () => {
   const open = menu.classList.toggle('is-open')
+  document.body.classList.toggle('menu-open', open)
   menuButton.setAttribute('aria-expanded', String(open))
   menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation')
 })
 
 menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
   menu.classList.remove('is-open')
+  document.body.classList.remove('menu-open')
   menuButton?.setAttribute('aria-expanded', 'false')
 }))
 
