@@ -71,7 +71,7 @@ button { border: 0; color: inherit; font: inherit; }
 .manifesto { position: relative; z-index: 2; width: 100%; min-height: 0; display: grid; place-items: center; padding: clamp(64px, 8vh, 90px) 0; overflow: hidden; }
 .manifesto + .manifesto { margin-top: 0; }
 .manifesto--profile { min-height: 0; }
-.manifesto::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(3,3,3,.14), rgba(23,2,5,.34) 55%, rgba(3,3,3,.28)); }
+.manifesto::before { content: ""; position: absolute; inset: 0; z-index: -1; background: transparent; }
 .manifesto__inner { text-align: center; }
 .manifesto__label { margin-bottom: 28px; color: var(--accent-bright); font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 .manifesto__title { max-width: 1160px; margin-inline: auto; color: #c7c6c5; font: 500 clamp(2.2rem, 4.7vw, 4.8rem)/1.18 var(--font-display); letter-spacing: -.045em; text-wrap: balance; }
@@ -134,16 +134,24 @@ button { border: 0; color: inherit; font: inherit; }
 .tech-marquee i { color: #d5d3d3; font-size: 1.25rem; }
 @keyframes techMarquee { to { transform: translateX(-50%); } }
 
-.red-atmosphere { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(112deg, #030303 0%, #090203 40%, #160306 73%, #27060b 100%); }
-.red-atmosphere::before { content: ""; position: absolute; inset: 0; opacity: .7; background: radial-gradient(ellipse 55% 72% at 83% 52%, rgba(171,17,26,.24), transparent 67%), radial-gradient(ellipse 35% 52% at 8% 12%, rgba(104,7,13,.15), transparent 72%); }
+.red-atmosphere { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(125deg, #020202 0%, #080102 38%, #120205 68%, #22050a 100%); }
+.red-atmosphere::before { content: ""; position: absolute; inset: 0; opacity: .76; background: radial-gradient(ellipse 62% 78% at 86% 48%, rgba(171,17,26,.22), transparent 68%), radial-gradient(ellipse 40% 58% at 6% 8%, rgba(104,7,13,.16), transparent 72%); animation: ambientPulse 12s ease-in-out infinite alternate; }
 .red-atmosphere::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.06), rgba(0,0,0,.35)), linear-gradient(90deg, rgba(0,0,0,.36), transparent 44%, rgba(112,5,12,.08)); }
 .red-atmosphere__wash { position: absolute; width: 70vw; height: 70vw; right: -28vw; bottom: -40vw; border-radius: 50%; background: rgba(183,18,28,.15); filter: blur(90px); animation: atmosphereBreathe 14s ease-in-out infinite alternate; }
 .red-atmosphere__beam { position: absolute; width: 42vw; height: 120vh; right: 6vw; top: -20vh; opacity: .12; background: linear-gradient(118deg, transparent 20%, rgba(225,37,46,.22) 49%, transparent 72%); filter: blur(55px); transform: rotate(-8deg); animation: atmosphereDrift 18s ease-in-out infinite alternate; }
+.red-atmosphere__blob { position: absolute; display: block; border-radius: 42% 58% 66% 34% / 48% 38% 62% 52%; background: radial-gradient(circle at 38% 34%, rgba(230,38,47,.3), rgba(142,8,18,.18) 42%, rgba(73,2,8,.08) 67%, transparent 76%); filter: blur(42px); mix-blend-mode: screen; will-change: transform, border-radius; }
+.red-atmosphere__blob--one { width: 58vw; height: 58vw; left: -24vw; top: -20vw; animation: lavaOne 24s ease-in-out infinite alternate; }
+.red-atmosphere__blob--two { width: 52vw; height: 64vw; right: -22vw; top: 14vh; opacity: .72; animation: lavaTwo 29s ease-in-out infinite alternate; }
+.red-atmosphere__blob--three { width: 46vw; height: 46vw; left: 30vw; bottom: -32vw; opacity: .54; animation: lavaThree 21s ease-in-out infinite alternate; }
 @keyframes atmosphereBreathe { to { transform: translate(-4vw,-3vw) scale(1.08); opacity: .75; } }
 @keyframes atmosphereDrift { to { transform: translateX(-5vw) rotate(-3deg); opacity: .19; } }
-.cursor-light { position: fixed; z-index: 1; left: 0; top: 0; width: min(54vw, 680px); height: min(54vw, 680px); border-radius: 47% 53% 58% 42% / 43% 40% 60% 57%; pointer-events: none; opacity: 0; transform: translate3d(-50%,-50%,0); background: radial-gradient(circle, rgba(255,58,65,.3) 0, rgba(190,15,23,.2) 18%, rgba(112,5,12,.12) 42%, rgba(72,2,7,.055) 62%, transparent 76%); filter: blur(24px); mix-blend-mode: screen; transition: opacity .45s; will-change: left, top, border-radius; animation: cursorMorph 6s ease-in-out infinite alternate; }
+@keyframes ambientPulse { to { opacity: .96; transform: scale(1.08); } }
+@keyframes lavaOne { 50% { transform: translate(22vw, 34vh) scale(1.12) rotate(22deg); border-radius: 64% 36% 43% 57% / 36% 59% 41% 64%; } 100% { transform: translate(45vw, 12vh) scale(.9) rotate(-14deg); border-radius: 38% 62% 58% 42% / 61% 35% 65% 39%; } }
+@keyframes lavaTwo { 45% { transform: translate(-34vw, -18vh) scale(.88) rotate(-18deg); border-radius: 62% 38% 31% 69% / 45% 65% 35% 55%; } 100% { transform: translate(-14vw, 40vh) scale(1.15) rotate(16deg); border-radius: 35% 65% 59% 41% / 63% 42% 58% 37%; } }
+@keyframes lavaThree { 50% { transform: translate(-28vw, -38vh) scale(1.2) rotate(25deg); border-radius: 67% 33% 48% 52% / 39% 58% 42% 61%; } 100% { transform: translate(32vw, -62vh) scale(.84) rotate(-20deg); border-radius: 41% 59% 66% 34% / 57% 35% 65% 43%; } }
+.cursor-light { position: fixed; z-index: 1; left: 0; top: 0; width: min(92vw, 1120px); height: min(92vw, 1120px); border-radius: 47% 53% 58% 42% / 43% 40% 60% 57%; pointer-events: none; opacity: 0; transform: translate3d(-50%,-50%,0); background: radial-gradient(circle, rgba(255,74,80,.28) 0, rgba(211,24,34,.2) 16%, rgba(151,8,19,.14) 34%, rgba(91,3,11,.08) 54%, rgba(55,1,6,.035) 68%, transparent 79%); filter: blur(34px); mix-blend-mode: screen; transition: opacity .55s; will-change: left, top, border-radius; animation: cursorMorph 7s ease-in-out infinite alternate; }
 @keyframes cursorMorph { to { border-radius: 61% 39% 42% 58% / 55% 61% 39% 45%; } }
-.cursor-light.is-visible { opacity: .78; }
+.cursor-light.is-visible { opacity: .92; }
 .cursor-light span { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; border-radius: 50%; transform: translate(-50%,-50%); background: rgba(255,91,96,.82); box-shadow: 0 0 10px rgba(232,35,43,.7); }
 
 .placeholder-page { display: grid; min-height: 100svh; place-items: center; background: #060606; }
