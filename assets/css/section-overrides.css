@@ -1,0 +1,104 @@
+/* Navigation shaped to match the supplied reference */
+.header {
+  top: 0;
+  padding-top: 0;
+  border-top: 8px solid #a91518;
+}
+
+.nav {
+  width: min(510px, calc(100% - 2rem));
+  height: 60px;
+  justify-content: center;
+  padding: 0 14px;
+  border-color: #315986;
+  border-radius: 0 0 15px 15px;
+  background: rgba(4, 16, 35, .96);
+}
+
+.nav__list { gap: 1px; }
+.nav__link { padding: .65rem .72rem; font-size: .78rem; }
+.nav__resume { margin-left: .35rem; padding: .68rem .85rem; font-size: .76rem; }
+
+/* Every destination is a standalone visual chapter */
+.page-section {
+  min-height: 100vh;
+  padding: 9rem 0 6rem;
+}
+
+.page-section .section__head h1 {
+  color: var(--text);
+  font: 700 clamp(2.7rem, 5.5vw, 5rem)/1 "Manrope", sans-serif;
+  letter-spacing: -.06em;
+}
+
+.page-section .section__head h1 span { color: var(--blue); }
+
+#experience,
+#projects,
+#certificates,
+#blog,
+#resume,
+#contact {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+#experience { background: #020d20; }
+#projects { background: #06162d; }
+#certificates { background: #e9eef7; color: #142038; }
+#certificates .section__head h2 { color: #101c31; }
+#certificates .section__head h1 { color: #101c31; }
+#certificates .section__number { color: #225fc5; }
+#blog { background: #091122; }
+#resume { background: #dce8fb; color: #101c31; }
+#contact { min-height: 100vh; }
+
+.certificates__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.certificates__grid article {
+  min-height: 315px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  border: 1px solid #b6c5da;
+  background: #f8faff;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.certificates__grid article:hover { transform: translateY(-6px); box-shadow: 0 18px 45px rgba(26, 53, 92, .12); }
+.certificate__icon { margin-bottom: auto; font-size: 2rem; color: #2d72df; }
+.certificates__grid article > p { color: #2868cc; font-size: .68rem; letter-spacing: .16em; font-weight: 700; }
+.certificates__grid h3 { color: #101c31; font: 700 1.25rem "Manrope", sans-serif; margin: .7rem 0 .5rem; }
+.certificates__grid article > span { color: #6d7c91; font-size: .82rem; }
+
+.blog__intro { max-width: 360px; color: #8e9bb0; line-height: 1.7; }
+.blog__list { border-top: 1px solid var(--line); }
+.blog__list article { display: grid; grid-template-columns: 150px 1fr auto; gap: 2rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--line); }
+.blog__list span { color: #57708f; font-size: .68rem; letter-spacing: .14em; }
+.blog__list h3 { font: 600 clamp(1.15rem, 2vw, 1.7rem) "Manrope", sans-serif; }
+.blog__list a { color: var(--blue); font-size: .8rem; font-weight: 700; }
+
+.resume { padding: 8rem 0; }
+.resume__content { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 7rem; }
+.resume h2 { color: #101c31; font: 800 clamp(3rem, 7vw, 6rem)/.88 "Manrope", sans-serif; letter-spacing: -.07em; }
+.resume h2 span { color: #286fe0; }
+.resume__content > div:last-child p { color: #53627a; line-height: 1.8; margin-bottom: 2rem; }
+
+@media (max-width: 800px) {
+  .header { border-top-width: 5px; }
+  .nav { width: calc(100% - 2rem); justify-content: space-between; border-radius: 0 0 15px 15px; }
+  .nav::before { content: "RG."; display: block; position: static; width: auto; height: auto; border: 0; color: #fff; font: 800 1rem "Manrope", sans-serif; }
+  .nav__menu { top: 5px; }
+  .nav__link { font-size: 1rem; padding: 1rem; }
+  #experience, #projects, #certificates, #blog, #resume, #contact { min-height: auto; }
+  .page-section { min-height: 100vh !important; padding-top: 8rem; }
+  .certificates__grid { grid-template-columns: 1fr; }
+  .blog__list article { grid-template-columns: 1fr; gap: .65rem; }
+  .resume__content { grid-template-columns: 1fr; gap: 3rem; }
+}
