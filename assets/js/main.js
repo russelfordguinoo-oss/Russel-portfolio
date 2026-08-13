@@ -95,6 +95,14 @@ if (cursorLight && finePointer.matches && !reduceMotion.matches) {
 
 const manifestos = document.querySelectorAll('.manifesto')
 
+const capabilitiesPanel = document.querySelector('.capabilities__inner')
+const profileStory = document.querySelector('.professional-profile__story')
+
+if (capabilitiesPanel && profileStory) {
+  profileStory.append(capabilitiesPanel)
+  document.querySelector('.capabilities')?.remove()
+}
+
 if (manifestos.length) {
   if (reduceMotion.matches) {
     manifestos.forEach(manifesto => manifesto.classList.add('is-visible'))
