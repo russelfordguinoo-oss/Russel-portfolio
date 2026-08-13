@@ -1,43 +1,132 @@
-const navMenu = document.getElementById('nav-menu')
-const navToggle = document.getElementById('nav-toggle')
-const navClose = document.getElementById('nav-close')
+const menu = document.querySelector('#nav-menu')
+const menuButton = document.querySelector('#nav-toggle')
 
-navToggle?.addEventListener('click', () => navMenu.classList.add('show-menu'))
-navClose?.addEventListener('click', () => navMenu.classList.remove('show-menu'))
-
-document.querySelectorAll('.nav__link, .nav__resume').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('show-menu'))
+menuButton?.addEventListener('click', () => {
+  const open = menu.classList.toggle('is-open')
+  menuButton.setAttribute('aria-expanded', String(open))
+  menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation')
 })
 
-const sections = document.querySelectorAll('section[id]')
-const navLinks = document.querySelectorAll('.nav__link')
+menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  menu.classList.remove('is-open')
+  menuButton?.setAttribute('aria-expanded', 'false')
+}))
 
-function updateActiveLink() {
-  const scrollY = window.scrollY
-  sections.forEach(section => {
-    const top = section.offsetTop - 140
-    const bottom = top + section.offsetHeight
-    if (scrollY >= top && scrollY < bottom) {
-      navLinks.forEach(link => link.classList.remove('active-link'))
-      document.querySelector(`.nav__link[href="#${section.id}"]`)?.classList.add('active-link')
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+const roleElement = document.querySelector('#rotating-role')
+const roles = [
+  'AI / ML ENGINEER',
+  'TECHNICAL SUPPORT',
+  'COMPUTER ENGINEER',
+  'DATA ANALYST',
+  'FULL STACK DEVELOPER',
+  'SOFTWARE ENGINEER'
+]
+
+if (roleElement) {
+  if (reduceMotion.matches) {
+    roleElement.textContent = 'SOFTWARE ENGINEER'
+    document.querySelector('.type-caret')?.remove()
+  } else {
+    let roleIndex = 0
+    let characterIndex = roles[0].length
+    let deleting = true
+
+    const typeRole = () => {
+      const role = roles[roleIndex]
+
+      if (!deleting) {
+        characterIndex += 1
+        roleElement.textContent = role.slice(0, characterIndex)
+
+        if (characterIndex === role.length) {
+          deleting = true
+          window.setTimeout(typeRole, 1600)
+          return
+        }
+
+        window.setTimeout(typeRole, 58)
+        return
+      }
+
+      characterIndex -= 1
+      roleElement.textContent = role.slice(0, characterIndex)
+
+      if (characterIndex === 0) {
+        deleting = false
+        roleIndex = (roleIndex + 1) % roles.length
+        window.setTimeout(typeRole, 300)
+        return
+      }
+
+      window.setTimeout(typeRole, 32)
     }
-  })
+
+    window.setTimeout(typeRole, 1600)
+  }
 }
 
-window.addEventListener('scroll', updateActiveLink, { passive: true })
+const cursorLight = document.querySelector('.cursor-light')
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)')
 
-const revealTargets = document.querySelectorAll('.section__head, .experience__grid, .project-card, .certificates__grid article, .blog__list article, .resume__content, .contact__email')
-revealTargets.forEach(target => target.classList.add('reveal'))
+if (cursorLight && finePointer.matches && !reduceMotion.matches) {
+  let targetX = window.innerWidth * .68
+  let targetY = window.innerHeight * .48
+  let currentX = targetX
+  let currentY = targetY
 
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible')
-      revealObserver.unobserve(entry.target)
+  window.addEventListener('pointermove', event => {
+    targetX = event.clientX
+    targetY = event.clientY
+    cursorLight.classList.add('is-visible')
+  }, { passive: true })
+
+  document.documentElement.addEventListener('mouseleave', () => cursorLight.classList.remove('is-visible'))
+
+  const followPointer = () => {
+    currentX += (targetX - currentX) * .075
+    currentY += (targetY - currentY) * .075
+    cursorLight.style.left = `${currentX}px`
+    cursorLight.style.top = `${currentY}px`
+    requestAnimationFrame(followPointer)
+  }
+  requestAnimationFrame(followPointer)
+}
+
+const manifestos = document.querySelectorAll('.manifesto')
+
+if (manifestos.length) {
+  if (reduceMotion.matches) {
+    manifestos.forEach(manifesto => manifesto.classList.add('is-visible'))
+  } else {
+    const scrollLines = document.querySelectorAll('.manifesto__title span, .manifesto__copy p')
+    let scrollFrame
+
+    const updateScrollText = () => {
+      const viewportCenter = window.innerHeight / 2
+      const fadeDistance = window.innerHeight * .85
+
+      scrollLines.forEach(line => {
+        const box = line.getBoundingClientRect()
+        const lineCenter = box.top + box.height / 2
+        const signedDistance = lineCenter - viewportCenter
+        const proximity = Math.max(0, 1 - Math.abs(signedDistance) / fadeDistance)
+        const eased = proximity * proximity * (3 - 2 * proximity)
+
+        line.style.opacity = String(.14 + eased * .86)
+        line.style.transform = `translateY(${signedDistance * .045}px)`
+        line.style.filter = `blur(${(1 - eased) * 3}px)`
+      })
+
+      scrollFrame = null
     }
-  })
-}, { threshold: 0.12 })
 
-revealTargets.forEach(target => revealObserver.observe(target))
-const yearElement = document.getElementById('year')
-if (yearElement) yearElement.textContent = new Date().getFullYear()
+    const requestScrollTextUpdate = () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollText)
+    }
+
+    window.addEventListener('scroll', requestScrollTextUpdate, { passive: true })
+    window.addEventListener('resize', requestScrollTextUpdate, { passive: true })
+    updateScrollText()
+  }
+}

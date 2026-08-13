@@ -1,3 +1,86 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Russel Guinoo — creative developer portfolio."><link rel="icon" href="assets/img/russel-glasses-face-large.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"><link rel="stylesheet" href="assets/css/styles.css"><link rel="stylesheet" href="assets/css/hero-overrides.css"><link rel="stylesheet" href="assets/css/section-overrides.css"><title>Russel Guinoo — Home</title></head><body>
-<header class="header"><nav class="nav container" aria-label="Main navigation"><div class="nav__menu" id="nav-menu"><ul class="nav__list"><li><a href="index.html" class="nav__link active-link">Home</a></li><li><a href="experience.html" class="nav__link">Experience</a></li><li><a href="projects.html" class="nav__link">Projects</a></li><li><a href="certificates.html" class="nav__link">Certificates</a></li><li><a href="blog.html" class="nav__link">Blog</a></li><li><a href="mailto:russelguinoo@example.com?subject=Resume%20Request" class="nav__resume"><i class="ri-file-text-line"></i> Resume <i class="ri-arrow-down-s-line"></i></a></li></ul><button class="nav__close" id="nav-close" aria-label="Close menu"><i class="ri-close-line"></i></button></div><button class="nav__toggle" id="nav-toggle" aria-label="Open menu"><i class="ri-menu-3-line"></i></button></nav></header>
-<main><section class="hero" id="home"><div class="hero__glow hero__glow--one"></div><div class="hero__glow hero__glow--two"></div><div class="hero__content container"><p class="hero__eyebrow"><span></span> Hello, I’m</p><h1 class="hero__title"><span>RUSSEL</span> <span>GUINOO</span></h1><div class="hero__meta"><p class="hero__role">CREATIVE DEVELOPER</p><p class="hero__intro">I design and build sharp, memorable digital experiences where clean code meets thoughtful design.</p></div><div class="hero__actions"><a class="button button--primary" href="projects.html">View my work <i class="ri-arrow-right-up-line"></i></a><a class="button button--ghost" href="mailto:russelguinoo@example.com">Let’s talk</a></div></div></section></main><script src="assets/js/main.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Russel Guinoo — software developer, engineer, and data professional.">
+  <link rel="icon" href="assets/img/russel-glasses-face-large.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260813-content-flow">
+  <title>Russel Guinoo — Home</title>
+</head>
+<body class="home-page">
+  <div class="red-atmosphere" aria-hidden="true">
+    <span class="red-atmosphere__wash"></span>
+    <span class="red-atmosphere__beam"></span>
+  </div>
+  <div class="cursor-light" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="nav__mark" href="index.html" aria-label="Russel Guinoo home"><img src="assets/img/russel-glasses-face-large.png" alt=""></a>
+      <div class="nav__menu" id="nav-menu">
+        <a href="index.html" class="nav__link active">Home</a>
+        <a href="experience.html" class="nav__link">Experience</a>
+        <a href="projects.html" class="nav__link">Projects</a>
+        <a href="certificates.html" class="nav__link">Certificates</a>
+        <a href="blog.html" class="nav__link">Blog</a>
+        <a href="mailto:russelguinoo@example.com?subject=Resume%20Request" class="nav__resume"><i class="ri-file-text-line" aria-hidden="true"></i> Resume</a>
+      </div>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open navigation" aria-controls="nav-menu" aria-expanded="false"><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__content shell">
+        <p class="hero__eyebrow">Hello, I’m</p>
+        <h1 class="hero__title" id="hero-title"><span>RUSSEL</span><span>GUINOO</span></h1>
+        <p class="hero__role" aria-live="polite"><span id="rotating-role">AI / ML ENGINEER</span><i class="type-caret" aria-hidden="true"></i></p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="projects.html">View my work <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          <a class="button button--secondary" href="mailto:russelguinoo@example.com">Let’s talk</a>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span>Scroll down</span><i></i></div>
+    </section>
+
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div class="manifesto__inner shell">
+        <p class="manifesto__label">A little about me</p>
+        <h2 class="manifesto__title" id="manifesto-title">
+          <span>Computer Engineering graduate</span>
+          <span>building practical <strong>software,</strong></span>
+          <span>exploring <strong>cloud technologies,</strong></span>
+          <span>working with <strong>data,</strong> and learning how</span>
+          <span><strong>AI</strong> can make applications more useful.</span>
+        </h2>
+      </div>
+    </section>
+
+    <section class="manifesto manifesto--outlook" aria-labelledby="outlook-title">
+      <div class="manifesto__inner shell">
+        <h2 class="manifesto__title" id="outlook-title">
+          <span>Building today.</span>
+          <span><strong>Learning constantly.</strong></span>
+          <span>Exploring <strong>what's next</strong></span>
+        </h2>
+      </div>
+    </section>
+
+    <section class="manifesto manifesto--profile" aria-label="About Russel Guinoo">
+      <div class="manifesto__inner shell">
+        <div class="manifesto__copy">
+          <p>As a <strong>Computer Engineering graduate</strong>, Russel builds at the intersection of <strong>software, data, cloud, and AI</strong> — combining technical problem-solving with experience supporting real users and systems.</p>
+          <p>Through personal projects, he has built <strong>full-stack applications</strong>, worked with <strong>MySQL and SQL</strong>, and explored how <strong>AI and machine learning</strong> can turn data into useful insights.</p>
+          <p>Currently, he is expanding his skills across <strong>software engineering and cloud technologies</strong>, working toward becoming a <strong>Cloud Software Engineer</strong>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/js/main.js?v=20260813-no-dead-zones"></script>
+</body>
+</html>
