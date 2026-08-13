@@ -2,7 +2,6 @@
 .header {
   top: 0;
   padding-top: 0;
-  border-top: 8px solid #a91518;
 }
 
 .nav {
@@ -91,10 +90,9 @@
 .resume__content > div:last-child p { color: #53627a; line-height: 1.8; margin-bottom: 2rem; }
 
 @media (max-width: 800px) {
-  .header { border-top-width: 5px; }
   .nav { width: calc(100% - 2rem); justify-content: space-between; border-radius: 0 0 15px 15px; }
   .nav::before { content: "RG."; display: block; position: static; width: auto; height: auto; border: 0; color: #fff; font: 800 1rem "Manrope", sans-serif; }
-  .nav__menu { top: 5px; }
+  .nav__menu { top: 0; }
   .nav__link { font-size: 1rem; padding: 1rem; }
   #experience, #projects, #certificates, #blog, #resume, #contact { min-height: auto; }
   .page-section { min-height: 100vh !important; padding-top: 8rem; }
