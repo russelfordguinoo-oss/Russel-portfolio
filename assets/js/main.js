@@ -99,7 +99,7 @@ if (manifestos.length) {
   if (reduceMotion.matches) {
     manifestos.forEach(manifesto => manifesto.classList.add('is-visible'))
   } else {
-    const scrollLines = document.querySelectorAll('.manifesto__title span, .manifesto__copy p')
+    const scrollLines = document.querySelectorAll('.manifesto__title span, .manifesto__copy p, .profile__reveal')
     let scrollFrame
 
     const updateScrollText = () => {
@@ -110,12 +110,15 @@ if (manifestos.length) {
         const box = line.getBoundingClientRect()
         const lineCenter = box.top + box.height / 2
         const signedDistance = lineCenter - viewportCenter
-        const proximity = Math.max(0, 1 - Math.abs(signedDistance) / fadeDistance)
+        const isProfileText = line.classList.contains('profile__reveal')
+        const elementFadeDistance = isProfileText ? window.innerHeight * .48 : fadeDistance
+        const proximity = Math.max(0, 1 - Math.abs(signedDistance) / elementFadeDistance)
         const eased = proximity * proximity * (3 - 2 * proximity)
 
-        line.style.opacity = String(.14 + eased * .86)
+        line.style.opacity = String((isProfileText ? .045 : .14) + eased * (isProfileText ? .955 : .86))
         line.style.transform = `translateY(${signedDistance * .045}px)`
-        line.style.filter = `blur(${(1 - eased) * 3}px)`
+        line.style.filter = `blur(${(1 - eased) * (isProfileText ? 2 : 3)}px) brightness(${isProfileText ? .42 + eased * .68 : 1})`
+        if (isProfileText) line.style.setProperty('--profile-glow', `${(eased * 16).toFixed(2)}px`)
       })
 
       scrollFrame = null
